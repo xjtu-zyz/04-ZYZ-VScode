@@ -2,15 +2,24 @@
 #include<cstring>
 using namespace std;
 
+class student;
+class teacher{
+private:
+    student* pStu;
+public:
+    teacher(int num);
+    ~teacher();
+    void assign(int n);
+    void show(int n);
+};
+
 class student{
 private:
-   int gnormal,gfinal;
-   static float proportion;
-   //需要与全部成员共享，静态变量
+    int gnormal,gfinal;
+    static float proportion;
+    //需要与全部成员共享，静态变量
 public:
-    student(): gnormal(0), gfinal(0) {}               //不能省略，因为teacher中的new student[num]需要调用默认构造函数
-    student(int a,int b): gnormal(a), gfinal(b) {}    //初始化列表
-
+    friend void teacher::assign(int n);
     static void setProp()
     {
         cin>>proportion;  
@@ -21,29 +30,22 @@ public:
     }
 };
 
-class teacher{
-private:
-    student* pStu;
-public:
-    teacher(int num)
+    teacher::teacher(int num)
     {
         pStu=new student[num];
     }
-    ~teacher()
+    teacher::~teacher()
     {
         if(pStu) delete []pStu;
     }
-    void assign(int n)
+    void teacher::assign(int n)
     {
-        int a,b;
-        cin>>a>>b;
-        pStu[n]=student(a,b);
+        cin>>pStu[n].gnormal>>pStu[n].gfinal;
     }
-    void show(int n)
+    void teacher::show(int n)
     {
         pStu[n].compScore();
     }
-};
 
 float student::proportion=0.4;
 int main(){
@@ -51,7 +53,6 @@ int main(){
     int n;
     cin>>n;
     teacher stu(n);
-    
     for(int i=0;i<n;i++)
     {
         stu.assign(i);
