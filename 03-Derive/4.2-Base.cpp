@@ -6,8 +6,10 @@ class Base{
     private:
     char *name;
     int age;
+    //法二：解决重复显示：bool flag;
     public:
     Base(const char*n,int a){
+        //flag=false;
         age=a;
         name=new char[strlen(n)+1];
         strcpy(name,n);
@@ -18,6 +20,10 @@ class Base{
         cout<<"Base destructor"<<endl;
     }
     void show(){
+        /*if(!s)
+        {
+            cout<<name<<" "<<age<<" ";
+        }*/
         cout<<name<<" "<<age<<" ";
     }
 };
@@ -34,11 +40,17 @@ class Leader:virtual protected Base{
         cout<<"Leader destructor"<<endl;
     }
     void show(){
+        /* if(!flag)
+        {
+            Base::show();
+            flag=true;
+        }*/
         Base::show();
         cout<<pos<<" ";
     }
 };
 
+//两个派生类中可有其中一个使用private派生
 class Engineer:virtual protected Base{
     private:
     char major[10];
@@ -61,6 +73,7 @@ class Engineer:virtual protected Base{
 
 };
 
+//可以都使用private派生
 class Chairman:public Leader,public Engineer{
     public:
     Chairman(const char*n,const char*p,const char*m,int a):Base(n,a),Leader(n,p,a),Engineer(n,m,a){
@@ -71,6 +84,7 @@ class Chairman:public Leader,public Engineer{
     }
     void show(){
         Leader::show();
+        //Engineer::show();
         cout<<Engineer::getMajor()<<endl;
     }
 
