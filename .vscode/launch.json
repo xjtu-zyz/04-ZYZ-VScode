@@ -14,7 +14,7 @@
                     "stopAtEntry": false,
                     "cwd": "${fileDirname}",
                     "environment": [],
-                    "externalConsole": true,
+                    "externalConsole": false,
                     "MIMode": "gdb",
                     "miDebuggerPath": "E:\\VScode\\MinGW-w64\\bin\\gdb.exe",
                     "setupCommands": [
