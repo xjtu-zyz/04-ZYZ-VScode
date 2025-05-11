@@ -3,7 +3,7 @@ using namespace std;
 int main() {
 	int x;
 	cin >> x;
-    int **p=nullptr;   //题目要求使用指向指针的指针变量！
+    int **p=new int*[x]();   //题目要求使用指向指针的指针变量！
     int sum=0;
     for(int i=0;i<x;i++)
     {
@@ -17,6 +17,6 @@ int main() {
         if(p[i])delete p[i]; 
       }
 	if(p) delete[]p;
-    //system("pause");
+    system("pause");
 	return 0;
 }
