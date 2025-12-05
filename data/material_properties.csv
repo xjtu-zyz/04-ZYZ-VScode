@@ -1,0 +1,8 @@
+material,hardness_mohs,density_kg_m3,compressive_strength_mpa,elastic_modulus_gpa,source,status,timestamp
+limestone,3.5,2700,77,26,mock_data,success,2025-12-05T13:16:57.709559
+sandstone,6.0,2200,52,32,mock_data,success,2025-12-05T13:16:58.709986
+marble,3.0,2750,88,77,mock_data,success,2025-12-05T13:16:59.710897
+granite,7.0,2650,62,10,mock_data,success,2025-12-05T13:17:00.718495
+oak_wood,2.5,750,22,77,mock_data,success,2025-12-05T13:17:01.719117
+pine_wood,2.0,500,30,15,mock_data,success,2025-12-05T13:17:02.719686
+brick,3.0,1800,94,75,mock_data,success,2025-12-05T13:17:03.720053
