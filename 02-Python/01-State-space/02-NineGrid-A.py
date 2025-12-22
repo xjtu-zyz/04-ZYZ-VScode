@@ -53,6 +53,7 @@ class EightPuzzle_AStar:
                 new_state = copy.deepcopy(state)
                 new_state[blank_i][blank_j], new_state[new_i][new_j] = \
                     new_state[new_i][new_j], new_state[blank_i][blank_j]
+                # Python的同时赋值（tuple unpacking） 特性,交换空白块和目标位置的数字
                 neighbors.append(new_state)
                 
         return neighbors
@@ -120,13 +121,13 @@ if __name__ == "__main__":
     ]
     
     puzzle_astar = EightPuzzle_AStar(initial, goal)
-    solution = puzzle_astar.solve(heuristic='manhattan')
-    
+    # solution = puzzle_astar.solve(heuristic='manhattan')
+    solution = puzzle_astar.solve(heuristic='misplaced')
     if solution:
         print("A*算法找到解决方案:")
         for i, state in enumerate(solution):
-            # # 使用曼哈顿距离作为启发式信息输出
-            # print(f"步骤 {i} (g={i}, h={puzzle_astar.manhattan_distance(state)}):")
+            # 使用曼哈顿距离作为启发式信息输出
+            print(f"步骤 {i} (g={i}, h={puzzle_astar.manhattan_distance(state)}):")
             # 使用错位棋子数作为启发式信息输出
             print(f"步骤 {i} (g={i}, h={puzzle_astar.misplaced_tiles(state)}):")
             for row in state:
