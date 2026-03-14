@@ -42,7 +42,7 @@ class BPNeuralNetwork:
         return (x > 0).astype(float)
     
     def sigmoid(self, x):
-        """Sigmoid激活函数，用于输出层"""
+        """Sigmoid激活函数用于输出层"""
         # 防止数值溢出
         x = np.clip(x, -250, 250)
         return 1 / (1 + np.exp(-x))

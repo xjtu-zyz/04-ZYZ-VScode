@@ -110,8 +110,8 @@ class EightPuzzle_AStar:
 if __name__ == "__main__":
     initial = [
         [2, 8, 3],
-        [1, 0, 4],
-        [7, 6, 5]
+        [1, 0, 6],
+        [7, 5, 4]
     ]
     
     goal = [
@@ -127,8 +127,8 @@ if __name__ == "__main__":
         print("A*算法找到解决方案:")
         for i, state in enumerate(solution):
             # 使用曼哈顿距离作为启发式信息输出
-            print(f"步骤 {i} (g={i}, h={puzzle_astar.manhattan_distance(state)}):")
-            # 使用错位棋子数作为启发式信息输出
+            # print(f"步骤 {i} (g={i}, h={puzzle_astar.manhattan_distance(state)}):")
+            # # 使用错位棋子数作为启发式信息输出
             print(f"步骤 {i} (g={i}, h={puzzle_astar.misplaced_tiles(state)}):")
             for row in state:
                 print(row)

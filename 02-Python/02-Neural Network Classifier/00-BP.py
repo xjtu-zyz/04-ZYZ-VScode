@@ -145,7 +145,7 @@ if __name__ == "__main__":
             correct_predictions += 1 
 
         print(f" 输入: {sample}, 目标: {target}, "
-              f"预测: {prediction[0, 0]}, 概率: {probability[0, 0]:.4f}")
+              f"预测: {prediction[0, 0]}, 输出: {probability[0, 0]:.4f}")
         
     accuracy = correct_predictions / total_predictions * 100
     print(f"\n准确率: {accuracy:.1f}% ({correct_predictions}/{total_predictions})")

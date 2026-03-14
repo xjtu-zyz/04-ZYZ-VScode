@@ -1,2 +1,0 @@
-metric,value,unit
-"['avg_daily_users', 'direction_ratio', 'parallel_usage_probability']","[150, 0.6, 0.3]","['people/day', 'ratio', 'probability']"
