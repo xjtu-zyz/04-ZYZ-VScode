@@ -56,15 +56,6 @@ for i, fname in enumerate(file_names):
     plt.suptitle(f'图片: {fname}')
     plt.show()
 
-# # 分析Pillow和OpenCV读取图像的异同点
-# print("\n【分析结果】")
-# print("相同点：")
-# print("  - 两种方式读取的图像像素数据最终都可以表示为numpy数组，数据类型均为uint8。")
-# print("  - 图像的空间尺寸（宽、高）一致。")
-# print("不同点：")
-# print("  - Pillow读取后直接是PIL Image对象，转换为numpy数组时默认通道顺序为RGB。")
-# print("  - OpenCV读取直接返回numpy数组，但通道顺序为BGR，直接显示会导致颜色失真，需转换为RGB。")
-# print("  - Pillow对某些特殊格式（如CMYK、灰度图）的处理更丰富，而OpenCV更专注于计算机视觉任务。")
 
 # 4) 对图像进行放大3倍和沿x方向平移2像素处理（使用OpenCV）
 print("\n开始第4步：图像放大3倍 + x方向平移2像素...")
@@ -98,6 +89,7 @@ if os.path.exists(sample_path):
         plt.axis('off')
 
         plt.subplot(1, 2, 2)
+        # 这里我是分两次获得了放大和平移的图片
         # plt.imshow(cv2.cvtColor(enlarged, cv2.COLOR_BGR2RGB))
         # plt.title('放大3倍')
         # plt.axis('off')
