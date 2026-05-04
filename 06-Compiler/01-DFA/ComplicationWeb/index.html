@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>编译原理实验平台 - DFA可视化</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">CW</div>
+        <div>
+          <h2>Compilation Web</h2>
+          <p>编译原理实验平台</p>
+        </div>
+      </div>
+      <nav>
+        <button class="nav-btn active" data-page="home">首页</button>
+        <button class="nav-btn" data-page="dfa">实验一：DFA 模拟</button>
+        <button class="nav-btn" data-page="plan">后续实验规划</button>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section id="home" class="page active">
+        <div class="hero card">
+          <h1>编译原理实验平台</h1>
+          <p>
+            本平台用于展示编译原理实验过程。当前完成实验一 DFA 模拟与可视化，
+            支持五元组解析、合法性检查、字符串识别、规则字符串枚举和状态转移图绘制。
+          </p>
+          <button class="btn primary" id="goDfaBtn">开始实验一</button>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>平台特性</h3>
+            <ul class="feature-list">
+              <li>纯前端运行，打开 <code>index.html</code> 即可使用</li>
+              <li>统一卡片式 UI，方便后续扩展 LL(1)、LR(1)</li>
+              <li>支持 DFA 图形可视化和识别过程展示</li>
+              <li>支持本地 txt 文件导入和文本框直接输入</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>简洁输入格式</h3>
+            <pre class="code-block">a b
+0 1 2
+0
+2
+0 a 1
+0 b 0
+1 a 0
+1 b 2
+2 a 1
+2 b 2
+</pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="dfa" class="page">
+        <div class="title-row">
+          <div>
+            <h1>实验一：DFA 模拟与可视化</h1>
+            <p>输入 DFA 五元组，完成合法性检查、识别过程模拟和状态图绘制。</p>
+          </div>
+          <button class="btn secondary" id="loadSampleBtn">载入示例</button>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>1. DFA 输入</h3>
+            <p class="tip">格式：第1行字符集，第2行状态集，第3行开始状态，第4行接受状态集，第5行以后为转换表。</p>
+            <input type="file" id="fileInput" accept=".txt" />
+            <textarea id="dfaInput" rows="10" spellcheck="false"></textarea>
+            <div class="btn-row">
+              <button class="btn primary" id="parseBtn">解析并检查</button>
+              <button class="btn secondary" id="drawBtn">绘制状态图</button>
+            </div>
+            <pre id="checkOutput" class="output"></pre>
+          </div>
+
+          <div class="card">
+            <h3>2. DFA 状态转移图</h3>
+            <div id="dfaGraph"></div>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>3. 字符串识别</h3>
+            <input id="testString" type="text" placeholder="输入字符串，例如 aba；空串输入 EPS" />
+            <button class="btn primary" id="runBtn">开始识别</button>
+            <pre id="processOutput" class="output"></pre>
+          </div>
+
+          <div class="card">
+            <h3>4. 规则字符串枚举</h3>
+            <input id="maxLen" type="number" min="0" value="3" />
+            <button class="btn primary" id="enumBtn">生成长度 ≤ N 的规则字符串</button>
+            <pre id="enumOutput" class="output"></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="plan" class="page">
+        <div class="card">
+          <h1>当前与后续开发计划</h1>
+          <ul class="plan-list">
+            <li><strong>实验一：DFA 模拟与可视化</strong>：已完成五元组解析、合法性检查、识别过程展示、规则串生成和状态图绘制。</li>
+            <li><strong>实验二：LL(1) 语法分析</strong>：后续可扩展 FIRST/FOLLOW 集合、预测分析表和字符串分析过程。</li>
+            <li><strong>实验三：LR(1) 语法分析</strong>：后续可扩展项目集族构造、分析表生成和移进规约过程展示。</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js"></script>
+  <script src="dfa.js"></script>
+</body>
+</html>
