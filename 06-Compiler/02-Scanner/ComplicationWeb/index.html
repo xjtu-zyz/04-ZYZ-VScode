@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>形式语言与编译实验平台</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">FC</div>
+        <div>
+          <h2>Compiler Lab</h2>
+          <p>形式语言与编译</p>
+        </div>
+      </div>
+      <nav>
+        <button class="nav-btn active" data-page="dfa">实验一 DFA</button>
+        <button class="nav-btn" data-page="scanner">实验二 Scanner</button>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section id="dfa" class="page active">
+        <div class="title-row">
+          <div>
+            <h1>DFA 模拟与可视化</h1>
+            <p>输入 DFA 五元组，完成合法性检查、字符串识别、规则串枚举和状态图绘制。</p>
+          </div>
+          <button class="btn secondary" id="loadSampleBtn">载入示例</button>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>DFA 输入</h3>
+            <textarea id="dfaInput" rows="10" spellcheck="false"></textarea>
+            <div class="btn-row">
+              <button class="btn primary" id="parseBtn">解析检查</button>
+              <button class="btn secondary" id="drawBtn">绘制状态图</button>
+            </div>
+            <pre id="checkOutput" class="output"></pre>
+          </div>
+
+          <div class="card">
+            <h3>状态转移图</h3>
+            <div id="dfaGraph"></div>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>字符串识别</h3>
+            <input id="testString" type="text" placeholder="输入字符串，例如 aba；空串输入 EPS" />
+            <button class="btn primary" id="runBtn">开始识别</button>
+            <pre id="processOutput" class="output"></pre>
+          </div>
+
+          <div class="card">
+            <h3>规则串枚举</h3>
+            <input id="maxLen" type="number" min="0" value="3" />
+            <button class="btn primary" id="enumBtn">生成长度不超过 N 的串</button>
+            <pre id="enumOutput" class="output"></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="scanner" class="page">
+        <div class="title-row">
+          <div>
+            <h1>词法分析 Scanner</h1>
+            <p>支持关键字、标识符、整数、浮点数、运算符和界符，输出 token 类型或 token 流。</p>
+          </div>
+          <button class="btn secondary" id="loadScannerSampleBtn">载入测试程序</button>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>源程序输入</h3>
+            <textarea id="sourceInput" rows="16" spellcheck="false"></textarea>
+            <div class="btn-row">
+              <button class="btn primary" id="scanPairsBtn">输出 token 流</button>
+              <button class="btn secondary" id="scanTypesBtn">只输出类型</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>扫描结果</h3>
+            <pre id="scannerOutput" class="output tall"></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js"></script>
+  <script src="dfa.js"></script>
+  <script src="scanner.js"></script>
+</body>
+</html>
