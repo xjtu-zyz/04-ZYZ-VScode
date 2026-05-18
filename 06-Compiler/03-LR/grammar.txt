@@ -1,0 +1,9 @@
+# Lab 3 LR(0) grammar sample.
+# This grammar matches the uploaded item-set picture:
+# E -> E + T | T
+# T -> F * | F
+# F -> ( E ) | a
+
+E -> E + T | T
+T -> F * | F
+F -> ( E ) | a

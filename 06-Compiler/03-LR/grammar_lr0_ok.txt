@@ -1,0 +1,4 @@
+# A simple LR(0) grammar without shift-reduce or reduce-reduce conflicts.
+# It recognizes strings like: b, ab, aab, aaab
+
+S -> a S | b

@@ -1,0 +1,149 @@
+﻿===== 实验三：LR(0)语法分析 =====
+文法文件：grammar.txt
+===== 增广文法 =====
+ 0. E' -> E
+ 1. E -> E + T
+ 2. E -> T
+ 3. T -> F *
+ 4. T -> F
+ 5. F -> ( E )
+ 6. F -> a
+
+===== LR(0)项目集规范族 =====
+I0:
+  E' -> · E
+  E -> · E + T
+  E -> · T
+  T -> · F *
+  T -> · F
+  F -> · ( E )
+  F -> · a
+
+I1:
+  E -> · E + T
+  E -> · T
+  T -> · F *
+  T -> · F
+  F -> · ( E )
+  F -> ( · E )
+  F -> · a
+
+I2:
+  F -> a ·
+
+I3:
+  E' -> E ·
+  E -> E · + T
+
+I4:
+  T -> F · *
+  T -> F ·
+
+I5:
+  E -> T ·
+
+I6:
+  E -> E · + T
+  F -> ( E · )
+
+I7:
+  E -> E + · T
+  T -> · F *
+  T -> · F
+  F -> · ( E )
+  F -> · a
+
+I8:
+  T -> F * ·
+
+I9:
+  F -> ( E ) ·
+
+I10:
+  E -> E + T ·
+
+===== 每个状态的闭包 Closure =====
+说明：规范族中的每个状态 Ii 本身就是对核心项目集反复执行 closure 后得到的闭包。
+Closure(I0):
+  E' -> · E
+  E -> · E + T
+  E -> · T
+  T -> · F *
+  T -> · F
+  F -> · ( E )
+  F -> · a
+
+Closure(I1):
+  E -> · E + T
+  E -> · T
+  T -> · F *
+  T -> · F
+  F -> · ( E )
+  F -> ( · E )
+  F -> · a
+
+Closure(I2):
+  F -> a ·
+
+Closure(I3):
+  E' -> E ·
+  E -> E · + T
+
+Closure(I4):
+  T -> F · *
+  T -> F ·
+
+Closure(I5):
+  E -> T ·
+
+Closure(I6):
+  E -> E · + T
+  F -> ( E · )
+
+Closure(I7):
+  E -> E + · T
+  T -> · F *
+  T -> · F
+  F -> · ( E )
+  F -> · a
+
+Closure(I8):
+  T -> F * ·
+
+Closure(I9):
+  F -> ( E ) ·
+
+Closure(I10):
+  E -> E + T ·
+
+===== GOTO状态转移 =====
+  GOTO(I0, '(') = I1
+  GOTO(I0, 'E') = I3
+  GOTO(I0, 'F') = I4
+  GOTO(I0, 'T') = I5
+  GOTO(I0, 'a') = I2
+  GOTO(I1, '(') = I1
+  GOTO(I1, 'E') = I6
+  GOTO(I1, 'F') = I4
+  GOTO(I1, 'T') = I5
+  GOTO(I1, 'a') = I2
+  GOTO(I3, '+') = I7
+  GOTO(I4, '*') = I8
+  GOTO(I6, ')') = I9
+  GOTO(I6, '+') = I7
+  GOTO(I7, '(') = I1
+  GOTO(I7, 'F') = I4
+  GOTO(I7, 'T') = I10
+  GOTO(I7, 'a') = I2
+
+===== LR(0)冲突检查 =====
+判断思路：若某个项目集中同时存在移进项目和归约项目，则为移进-归约冲突；若同一项目集中存在两个及以上归约项目，则为归约-归约冲突。没有上述冲突时，可判定为LR(0)文法。
+发现冲突，该文法不是LR(0)文法：
+  I4 存在移进-归约冲突：T -> F ·
+
+状态图Graphviz文件已生成：lr0_items.dot
+可使用命令生成图片：dot -Tpng lr0_items.dot -o lr0_items.png
+
+===== 源程序符号串简单归一化 =====
+源文件：test.src
+归一化终结符序列：a + a * ( a + a ) $

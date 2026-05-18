@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>实验三 LR(0) 项目集规范族</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">LR</div>
+        <div>
+          <h2>Compiler Lab</h2>
+          <p>实验三 语法分析</p>
+        </div>
+      </div>
+      <nav>
+        <button class="nav-btn active" data-page="lr0">LR(0) 可视化</button>
+        <button class="nav-btn" data-page="result">项目集与转移</button>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section id="lr0" class="page active">
+        <div class="title-row">
+          <div>
+            <h1>LR(0) 项目集规范族</h1>
+            <p>输入或导入文法文件，自动增广文法，计算 Closure、Goto、冲突，并绘制状态转移图。</p>
+          </div>
+          <button class="btn secondary" id="loadSampleBtn">载入示例</button>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>文法输入</h3>
+            <p class="tip">格式示例：<code>E -> E + T | T</code>。符号之间请用空格分隔；程序会自动添加新的开始产生式。</p>
+            <input type="file" id="grammarFile" accept=".txt,.grammar" />
+            <textarea id="grammarInput" rows="11" spellcheck="false"></textarea>
+            <div class="btn-row">
+              <button class="btn primary" id="buildBtn">生成 LR(0)</button>
+              <button class="btn secondary" id="loadOkBtn">载入 LR(0) 示例</button>
+            </div>
+            <pre id="summaryOutput" class="output"></pre>
+          </div>
+
+          <div class="card">
+            <h3>状态转移图</h3>
+            <div id="graphCanvas"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="result" class="page">
+        <div class="title-row">
+          <div>
+            <h1>项目集、Closure 与 Goto</h1>
+            <p>这里展示完整文本结果，便于复制到实验报告。</p>
+          </div>
+        </div>
+        <div class="grid three">
+          <div class="card">
+            <h3>项目集规范族</h3>
+            <pre id="statesOutput" class="output tall"></pre>
+          </div>
+          <div class="card">
+            <h3>Closure</h3>
+            <pre id="closureOutput" class="output tall"></pre>
+          </div>
+          <div class="card">
+            <h3>Goto</h3>
+            <pre id="gotoOutput" class="output tall"></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js"></script>
+  <script src="lr0.js"></script>
+</body>
+</html>

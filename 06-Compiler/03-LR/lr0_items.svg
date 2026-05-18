@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-label="LR(0)项目集规范族状态转移图">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+    <style>
+      .title { font: 700 26px "Microsoft YaHei", Arial, sans-serif; fill: #172033; }
+      .box { fill: #ffffff; stroke: #2563eb; stroke-width: 2; rx: 6; }
+      .conflict { stroke: #dc2626; stroke-width: 3; }
+      .item { font: 14px Consolas, "Microsoft YaHei", monospace; fill: #172033; }
+      .head { font: 700 16px Consolas, "Microsoft YaHei", monospace; fill: #1d4ed8; }
+      .edge { fill: none; stroke: #475569; stroke-width: 2; marker-end: url(#arrow); }
+      .label { font: 700 15px Consolas, "Microsoft YaHei", monospace; fill: #334155; paint-order: stroke; stroke: #ffffff; stroke-width: 5px; }
+      .note { font: 14px "Microsoft YaHei", Arial, sans-serif; fill: #64748b; }
+    </style>
+  </defs>
+
+  <text x="750" y="38" text-anchor="middle" class="title">实验三 LR(0) 项目集规范族</text>
+  <text x="750" y="64" text-anchor="middle" class="note">文法：E -> E + T | T，T -> F * | F，F -> ( E ) | a；红框 I4 存在移进-归约冲突</text>
+
+  <g id="I0">
+    <rect x="40" y="120" width="260" height="180" class="box"/>
+    <text x="55" y="145" class="head">I0</text>
+    <text x="55" y="170" class="item">E' -> · E</text>
+    <text x="55" y="190" class="item">E  -> · E + T</text>
+    <text x="55" y="210" class="item">E  -> · T</text>
+    <text x="55" y="230" class="item">T  -> · F *</text>
+    <text x="55" y="250" class="item">T  -> · F</text>
+    <text x="55" y="270" class="item">F  -> · ( E )</text>
+    <text x="55" y="290" class="item">F  -> · a</text>
+  </g>
+
+  <g id="I1">
+    <rect x="400" y="80" width="280" height="190" class="box"/>
+    <text x="415" y="105" class="head">I1</text>
+    <text x="415" y="130" class="item">E  -> · E + T</text>
+    <text x="415" y="150" class="item">E  -> · T</text>
+    <text x="415" y="170" class="item">T  -> · F *</text>
+    <text x="415" y="190" class="item">T  -> · F</text>
+    <text x="415" y="210" class="item">F  -> · ( E )</text>
+    <text x="415" y="230" class="item">F  -> ( · E )</text>
+    <text x="415" y="250" class="item">F  -> · a</text>
+  </g>
+
+  <g id="I2">
+    <rect x="400" y="320" width="150" height="58" class="box"/>
+    <text x="415" y="345" class="head">I2</text>
+    <text x="415" y="365" class="item">F -> a ·</text>
+  </g>
+
+  <g id="I3">
+    <rect x="400" y="430" width="190" height="78" class="box"/>
+    <text x="415" y="455" class="head">I3</text>
+    <text x="415" y="475" class="item">E' -> E ·</text>
+    <text x="415" y="495" class="item">E  -> E · + T</text>
+  </g>
+
+  <g id="I4">
+    <rect x="400" y="560" width="170" height="78" class="box conflict"/>
+    <text x="415" y="585" class="head">I4</text>
+    <text x="415" y="605" class="item">T -> F · *</text>
+    <text x="415" y="625" class="item">T -> F ·</text>
+  </g>
+
+  <g id="I5">
+    <rect x="400" y="690" width="150" height="58" class="box"/>
+    <text x="415" y="715" class="head">I5</text>
+    <text x="415" y="735" class="item">E -> T ·</text>
+  </g>
+
+  <g id="I6">
+    <rect x="810" y="100" width="210" height="78" class="box"/>
+    <text x="825" y="125" class="head">I6</text>
+    <text x="825" y="145" class="item">E -> E · + T</text>
+    <text x="825" y="165" class="item">F -> ( E · )</text>
+  </g>
+
+  <g id="I7">
+    <rect x="810" y="245" width="220" height="130" class="box"/>
+    <text x="825" y="270" class="head">I7</text>
+    <text x="825" y="295" class="item">E -> E + · T</text>
+    <text x="825" y="315" class="item">T -> · F *</text>
+    <text x="825" y="335" class="item">T -> · F</text>
+    <text x="825" y="355" class="item">F -> · ( E )</text>
+    <text x="825" y="375" class="item">F -> · a</text>
+  </g>
+
+  <g id="I8">
+    <rect x="810" y="570" width="150" height="58" class="box"/>
+    <text x="825" y="595" class="head">I8</text>
+    <text x="825" y="615" class="item">T -> F * ·</text>
+  </g>
+
+  <g id="I9">
+    <rect x="1150" y="100" width="170" height="58" class="box"/>
+    <text x="1165" y="125" class="head">I9</text>
+    <text x="1165" y="145" class="item">F -> ( E ) ·</text>
+  </g>
+
+  <g id="I10">
+    <rect x="1150" y="300" width="170" height="58" class="box"/>
+    <text x="1165" y="325" class="head">I10</text>
+    <text x="1165" y="345" class="item">E -> E + T ·</text>
+  </g>
+
+  <path d="M300 160 C330 130, 360 110, 400 105" class="edge"/><text x="350" y="115" class="label">(</text>
+  <path d="M300 215 C335 230, 365 300, 400 340" class="edge"/><text x="350" y="275" class="label">a</text>
+  <path d="M300 190 C335 250, 350 430, 400 465" class="edge"/><text x="345" y="405" class="label">E</text>
+  <path d="M300 240 C335 340, 350 565, 400 595" class="edge"/><text x="350" y="545" class="label">F</text>
+  <path d="M300 260 C335 430, 350 690, 400 720" class="edge"/><text x="350" y="690" class="label">T</text>
+
+  <path d="M680 140 C720 120, 760 115, 810 125" class="edge"/><text x="745" y="118" class="label">E</text>
+  <path d="M680 210 C730 235, 765 255, 810 285" class="edge"/><text x="745" y="245" class="label">(</text>
+  <path d="M680 240 C720 280, 760 320, 810 340" class="edge"/><text x="745" y="310" class="label">a</text>
+  <path d="M680 170 C720 390, 750 550, 810 585" class="edge"/><text x="755" y="530" class="label">F</text>
+  <path d="M680 150 C720 470, 760 660, 1150 330" class="edge"/><text x="900" y="700" class="label">T</text>
+
+  <path d="M590 480 C680 430, 740 360, 810 300" class="edge"/><text x="705" y="390" class="label">+</text>
+  <path d="M570 600 C650 595, 740 595, 810 600" class="edge"/><text x="690" y="585" class="label">*</text>
+  <path d="M1020 145 C1070 135, 1110 130, 1150 130" class="edge"/><text x="1085" y="125" class="label">)</text>
+  <path d="M1020 135 C1075 200, 1110 260, 1150 320" class="edge"/><text x="1085" y="245" class="label">+</text>
+  <path d="M1030 310 C1070 315, 1110 320, 1150 330" class="edge"/><text x="1090" y="315" class="label">T</text>
+</svg>
